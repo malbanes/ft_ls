@@ -1,0 +1,12 @@
+
+
+>>>>>>>>>>>>>>>>>>>>>> LS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+1 - Lecture des arguments
+	a-lister les options				////////		int found_option(char c, t_opt *options)
+	b-checker les arguments invalides	///////			
+
+2 - ranger les arguments en fonction des options
+	A chaque nouvel elements, on le place soit a droite, soit a gauche;
+	a-si -t et pas -r, tri par time
+	b-si pas -t, ni -r ou erreur tri par ascii
