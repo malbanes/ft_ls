@@ -6,27 +6,27 @@
 /*   By: malbanes <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 12:02:55 by malbanes          #+#    #+#             */
-/*   Updated: 2017/05/02 16:43:47 by malbanes         ###   ########.fr       */
+/*   Updated: 2017/09/02 13:11:41 by malbanes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ls.h"
 #include <stdio.h>
+#include <dirent.h>
 
 void	print_lst(t_lst **alst);
 
-t_opt	*init_options(t_opt *options)
+t_struct_ls    *init_struct_ls(t_struct_ls *stru_ls)
 {
-	if ((options = malloc(sizeof(t_opt))) == NULL)
-		exit(2);
-	options->l = 0;
-	options->a = 0;
-	options->t = 0;
-	options->r = 0;
-	options->R = 0;
-	options->ret = 0;
-	options->arg = 0;
-	return (options);
+    if ((stru_ls = malloc(sizeof(t_struct_ls))) == NULL)
+    {
+        //exit propre
+    }
+    stru_ls->opt = NULL;
+    stru_ls->buff_len = 0;
+    stru_ls->buff = NULL;
+    stru_ls->lst = NULL;
+    return (stru_ls);
 }
 
 t_lst	*ft_lstnew_ls_av(char *av)
@@ -92,7 +92,8 @@ void	print_lst(t_lst **alst)
 	tmp = *alst;
 	while (tmp->next != NULL)
 	{
-		ft_putendl(tmp->name);
+    ft_putstr(tmp->name);
+        ft_putchar(' ');
 		tmp = tmp->next;
 	}
 		ft_putstr(tmp->name);
@@ -100,12 +101,24 @@ void	print_lst(t_lst **alst)
 
 void    print_if_dossier(char *name, t_opt *opt)
 {
-    if (opendir(name) != NULL && opt->arg <= 1)
-        ft_putendl(name);
-    else if (opendir(name) != NULL && opt->arg > 1)
+    DIR *dirp;
+    struct dirent *buf;
+    int i;
+    
+    i = 0;
+    if ((opendir(name) != NULL && opt->arg > 1) ||(opendir(name) != NULL &&  opt->ret != 0))
     {
         ft_putstr(name);
-        ft_putendl(":\n");
+        ft_putendl(":");
+    }
+    if ((dirp = opendir(name)) != NULL)
+    {
+        while ((buf = readdir(dirp)) != NULL)
+        {
+            if (i > 1)
+                ft_putendl(buf->d_name);
+            i++;
+        }
     }
 }
 
@@ -119,11 +132,17 @@ void	print_lst_av(t_lst **alst, t_opt *opt)
     while (tmp->next != NULL)
     {
         if (opendir(tmp->name) == NULL)
-            ft_putendl(tmp->name);
-        tmp = tmp->next;
+        {
+            ft_putstr(tmp->name);
+            ft_putchar(' ');
+        }
+            tmp = tmp->next;
     }
     if (opendir(tmp->name) == NULL)
+    {
         ft_putendl(tmp->name);
+        putchar('\n');
+    }
     tmp = *alst;
     while (tmp->next != NULL)
     {

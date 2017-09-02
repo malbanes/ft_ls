@@ -15,15 +15,31 @@ lire dans le repertoire courant
 //				list1->nxt = NULL;
 //			}
 //}
+t_lst   *ft_lstnew_ls(struct dirent *dir)
+{
+    t_lst   *lst;
+    
+    if((lst = malloc(sizeof(t_lst))) == NULL)
+    {
+        exit (2);
+        //exit propre
+    }
+    //lst->info = NULL;
+    lst->next = NULL;
+    return (lst);
+}
 
 int	main(int ac, char **av)
 {
-	t_opt	*options;
+	t_struct_ls	*stru_ls;
 	t_lst   *lst;
+    t_opt   *options;
 	int i;
 
-	options = init_options(options);
-	i = 1;
+    stru_ls = init_struct_ls(stru_ls);
+	//stru_ls->opt = init_options(options);
+    options = init_options();
+    i = 1;
 	if (ac > 1) //afficher d'abord les fichier puis les dossier
 	{
         ft_parse_arg(av, ac, options);

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ls.h"
-
+/*
 void    print_lst_ls(t_lst **lst, t_opt *opt)
 {
     t_lst *tmp;
@@ -49,8 +49,8 @@ char    *ft_strcpy_ls(char *dst, char *src1, char *src2)
     }
     dst[i] = '\0';
     return (dst);
-}
-
+}*/
+/*
 t_lst	*ft_lstnew_ls(dirent *buff, char *instance)
 {
     t_lst *lst;
@@ -60,12 +60,12 @@ t_lst	*ft_lstnew_ls(dirent *buff, char *instance)
         exit (2);
         //exit propre
     }
-    lst->name = malloc(sizeof(char) * (buff->d_namelen + ft_strlen(instance) + 2));
+    lst->name = malloc(sizeof(char) * (buff->d_namlen + ft_strlen(instance) + 2));
     lst->name = ft_strcpy_ls(lst->name, instance, char buff->d_name); //si t'as des noms trop long faut faire gaffe a la taille de d_name
     lst->next = NULL;
     return (lst);
-}
-
+}*/
+/*
 t_lst   **ft_tri_ls(dirent *buff, t_lst **lst2, t_opt *options, char *instance)
 {
     t_lst *tmp;
@@ -74,8 +74,8 @@ t_lst   **ft_tri_ls(dirent *buff, t_lst **lst2, t_opt *options, char *instance)
     tmp = *lst2;
     element = ft_lstnew_ls(buff, instance);
     while ()
-}
-
+}*/
+/*
 void    ls_recursive(t_lst **lst, t_opt *options)
 {
     t_lst   *lst2;
@@ -110,4 +110,4 @@ void    ls_recursive(t_lst **lst, t_opt *options)
         }
     }
     ft_memdell(lst2);
-}
+}*/
