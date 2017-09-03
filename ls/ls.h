@@ -53,6 +53,9 @@ typedef struct		s_struct_ls
     t_lst   *lst;
 }					t_struct_ls;
 
+int     ft_compare(char *av);
+void    del_struct_ls(t_struct_ls *ls);
+void    delt_lst(t_lst **lst);
 t_struct_ls    *init_struct_ls(t_struct_ls *stru_ls);
 void	print_lst_av(t_lst **alst, t_opt *opt);
 void	print_lst(t_lst **alst);

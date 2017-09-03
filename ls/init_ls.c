@@ -29,6 +29,26 @@ t_struct_ls    *init_struct_ls(t_struct_ls *stru_ls)
     return (stru_ls);
 }
 
+void    del_struct_ls(t_struct_ls *ls)
+{
+    free (ls->opt);
+    free(ls);
+}
+
+void    delt_lst(t_lst **lst)
+{
+    t_lst *tmp;
+    
+    tmp = *lst;
+    while ((*lst)->next != NULL)
+    {
+        tmp = tmp->next;
+        free(*lst);
+        *lst = tmp;
+    }
+    free(*lst);
+}
+
 t_lst	*ft_lstnew_ls_av(char *av)
 {
 	t_lst *lst;
@@ -92,11 +112,17 @@ void	print_lst(t_lst **alst)
 	tmp = *alst;
 	while (tmp->next != NULL)
 	{
-    ft_putstr(tmp->name);
-        ft_putchar(' ');
+        if (ft_compare(tmp->data->d_name) != -1)
+        {
+            ft_putstr(tmp->data->d_name);
+            ft_putchar(' ');
+        }
 		tmp = tmp->next;
 	}
-		ft_putstr(tmp->name);
+	//	ft_putstr(tmp->name);
+    ft_putstr(tmp->data->d_name);
+    ft_putchar('\n');
+    ft_putchar('\n');
 }
 
 void    print_if_dossier(char *name, t_opt *opt)

@@ -24,11 +24,11 @@ t_lst   *ft_lstnew_ls(struct dirent *dir)
         exit (2);
         //exit propre
     }
-    //lst->info = NULL;
+    lst->data = dir;
     lst->next = NULL;
     return (lst);
 }
-
+/*
 int	main(int ac, char **av)
 {
 	t_struct_ls	*stru_ls;
@@ -67,4 +67,4 @@ int	main(int ac, char **av)
 //		}
 //	}
     return (1);
-}
+}*/

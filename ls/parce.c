@@ -65,5 +65,8 @@ void	ft_parse_arg(char **av, int ac, t_opt	*options)
 		i++;
 	}
     if (error != NULL)
+    {
         ft_print_error(&error);
+        delt_lst(&error);
+    }
 }
