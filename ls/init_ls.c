@@ -39,13 +39,20 @@ void    delt_lst(t_lst **lst)
 {
     t_lst *tmp;
     
+    if (*lst == NULL)
+    {
+        free(*lst);
+        return;
+    }
     tmp = *lst;
     while ((*lst)->next != NULL)
     {
         tmp = tmp->next;
+        free((*lst)->path);
         free(*lst);
         *lst = tmp;
     }
+    free((*lst)->path);
     free(*lst);
 }
 
@@ -109,19 +116,22 @@ void	print_lst(t_lst **alst)
 {
 	t_lst *tmp;
 
+    if (*alst == NULL)
+    {
+        return;
+    }
 	tmp = *alst;
 	while (tmp->next != NULL)
 	{
-        if (ft_compare(tmp->data->d_name) != -1)
-        {
+       // if (ft_compare(tmp->data->d_name) != -1)
+        //{
             ft_putstr(tmp->data->d_name);
             ft_putchar(' ');
-        }
+        //}
 		tmp = tmp->next;
 	}
-	//	ft_putstr(tmp->name);
+		//ft_putstr(tmp->name);
     ft_putstr(tmp->data->d_name);
-    ft_putchar('\n');
     ft_putchar('\n');
 }
 

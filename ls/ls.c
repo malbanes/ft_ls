@@ -15,16 +15,55 @@ lire dans le repertoire courant
 //				list1->nxt = NULL;
 //			}
 //}
-t_lst   *ft_lstnew_ls(struct dirent *dir)
+
+char    *ft_add_path(char *av, char *path)
+{
+    int i;
+    int j;
+    char *ret;
+    
+    ret = NULL;
+    i = 0;
+    j = 0;
+    if ((ret = malloc(sizeof(char)*(ft_strlen(av) + ft_strlen(path) + 2))) == NULL)
+        return (NULL);
+    while (path[i] != '\0')
+    {
+        ret[i] = path[i];
+        i++;
+    }
+    ret[i] = '/';
+    i++;
+    while (av[j] != '\0')
+    {
+        ret[i] = av[j];
+        i++;
+        j++;
+    }
+    ret[i] = '\0';
+    return (ret);
+}
+
+t_lst   *ft_lstnew_ls(struct dirent *dir, char *path)
 {
     t_lst   *lst;
-    
+
     if((lst = malloc(sizeof(t_lst))) == NULL)
     {
         exit (2);
         //exit propre
     }
     lst->data = dir;
+    if (lst->data->d_type == DT_DIR)
+    {
+        if ((lst->path = ft_add_path(dir->d_name, path)) == NULL)
+        {
+            exit (2);
+            //exit propre
+        }
+    }
+    else
+        lst->path = NULL;
     lst->next = NULL;
     return (lst);
 }

@@ -60,7 +60,7 @@ t_struct_ls    *init_struct_ls(t_struct_ls *stru_ls);
 void	print_lst_av(t_lst **alst, t_opt *opt);
 void	print_lst(t_lst **alst);
 t_lst	*ft_lstadd_ascii_av(t_lst **alst, char *av, int er);
-t_lst	*ft_lstnew_ls(struct dirent *dir);
+t_lst	*ft_lstnew_ls(struct dirent *dir, char *path);
 t_opt	*init_options(void);
 int	found_option(char c, t_opt *options);
 void print_options(t_opt *options);
