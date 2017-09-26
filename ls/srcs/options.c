@@ -14,6 +14,7 @@ t_opt	*init_options(void)
     options->R = 0;
     options->ret = 0;
     options->arg = 0;
+    options->is_argument = 0;
     return (options);
 }
 

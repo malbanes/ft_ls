@@ -33,6 +33,7 @@ typedef struct		s_opt
 	int R;
 	int t;
 	int ret;
+    int is_argument;
 	int arg;
 }					t_opt;
 
@@ -57,6 +58,9 @@ typedef struct		s_struct_ls
 //init.c
 char    *str_cpy_ls(char *src, unsigned int len);
 t_lst   *ft_lstnew_ls(struct dirent *dir, char *path);
+
+//tri_av.c
+void    ft_make_lst_av(int ac, char **av, t_opt *options);
 
 //tri_alph.c
 void	(*TypeDeTri(t_opt *options))(struct dirent*, t_opt*, t_lst**, char *);
@@ -88,6 +92,7 @@ int	ft_cheack_arg_valide(char *av);
 void	ft_parse_arg(char **av, int ac, t_opt	*options);
 
 //del.c
+void    delt_lst_av(t_lst **lst);
 void    delt_lst(t_lst **lst);
 
 //print.c

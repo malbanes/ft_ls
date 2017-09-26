@@ -37,6 +37,7 @@ void	ft_parse_arg(char **av, int ac, t_opt	*options)
                 ft_lstadd_ascii_av(&error, av[i], 1);
                 options->ret = 2;
             }
+            options->arg++;
         }
         else
             options->arg++;
@@ -45,6 +46,6 @@ void	ft_parse_arg(char **av, int ac, t_opt	*options)
     if (error != NULL)
     {
         ft_print_error(&error);
-        delt_lst(&error);
+        delt_lst_av(&error);
     }
 }

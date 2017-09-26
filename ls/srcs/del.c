@@ -22,3 +22,24 @@ void    delt_lst(t_lst **lst)
     free((*lst)->name);
     free(*lst);
 }
+
+void    delt_lst_av(t_lst **lst)
+{
+    t_lst *tmp;
+    
+    if (*lst == NULL)
+    {
+        free(*lst);
+        return;
+    }
+    tmp = *lst;
+    while ((*lst)->next != NULL)
+    {
+        tmp = tmp->next;
+        free((*lst)->name);
+        free(*lst);
+        *lst = tmp;
+    }
+    free((*lst)->name);
+    free(*lst);
+}

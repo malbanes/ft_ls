@@ -1,8 +1,5 @@
 #include "ls.h"
 
-void	(*TypeDeTri(t_opt *options))(struct dirent*, t_opt*, t_lst**, char *);
-
-
 char    *ft_add_path(char *av, char *path)
 {
     int i;
@@ -69,7 +66,7 @@ int	ft_recurcive(char *path, t_opt *options)
     
     while ((dp = readdir(dirp)) != NULL)
 	{
-        TypeDeTri(options)(dp, options, &list, path);
+		TypeDeTri(options)(dp, options, &list, path);
 	}
 	closedir(dirp);
     print_lst(&list, options);
