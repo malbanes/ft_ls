@@ -7,7 +7,7 @@ char    *str_cpy_ls(char *src, unsigned int len)
     
     ret = NULL;
     i = 0;
-    if ((ret = malloc(sizeof(char)*(len))) == NULL)
+    if ((ret = malloc(sizeof(char)*(len + 1))) == NULL)
         exit(0);
     while (i < len)
     {

@@ -16,8 +16,11 @@ char    *ft_add_path(char *av, char *path)
         ret[i] = path[i];
         i++;
     }
-    ret[i] = '/';
-    i++;
+    if (ret[i - 1] != '/')
+    {
+        ret[i] = '/';
+        i++;
+    }
     while (av[j] != '\0')
     {
         ret[i] = av[j];
@@ -72,7 +75,6 @@ int	ft_recurcive(char *path, t_opt *options)
     print_lst(&list, options);
 	if (options->R == 1)
 	{
-		ft_putchar('\n');
 		tmp = list;
 		while (tmp != NULL)
 		{
@@ -80,6 +82,7 @@ int	ft_recurcive(char *path, t_opt *options)
 			{
 				if (ft_compare(tmp->name, options) != -1 && ft_compare(tmp->name, options) != -2) //cf ft_compare pour plus d'options
 				{
+                    ft_putchar('\n');
 					ft_putstr(tmp->path);
 					ft_putendl(":");
 				}
