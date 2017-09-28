@@ -20,12 +20,53 @@ void    ft_print_error(t_lst **error)
     }
 }
 
+void	print_lst_av(t_lst **alst, t_opt *options)
+{
+    t_lst *tmp;
+    DIR *dirp;
+    int i;
+    
+    i = 0;
+    dirp = NULL;
+    if (*alst == NULL)
+    {
+        return;
+    }
+    tmp = *alst;
+    while (tmp->next != NULL)
+    {
+        if ((dirp = opendir(tmp->name)) == NULL) // ou ISDIR sur lst->type
+        {
+            ft_putstr(tmp->name);
+            ft_putchar('\n');
+        }
+        else
+        {
+            i++;
+            closedir(dirp);
+        }
+        tmp = tmp->next;
+    }
+    dirp = NULL;
+    if ((dirp = opendir(tmp->name)) == NULL) // ou ISDIR sur lst->type
+    {
+        ft_putstr(tmp->name);
+        ft_putchar('\n');
+    }
+    else
+    {
+        i++;
+        closedir(dirp);
+    }
+    if (i != options->arg)
+        ft_putchar('\n');
+    options->arg = i;
+}
+
 void	print_lst(t_lst **alst, t_opt *options)
 {
     t_lst *tmp;
     
-	//if (options->a == 1 && options->r == 0)
-	//	ft_putstr(".\n..\n");
     if (*alst == NULL)
     {
         return;
@@ -39,6 +80,4 @@ void	print_lst(t_lst **alst, t_opt *options)
     }
     ft_putstr(tmp->name);
     ft_putchar('\n');
-   // if (options->a == 1 && options->r == 1)
-     //   ft_putstr(".\n..\n");
 }

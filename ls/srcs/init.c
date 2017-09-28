@@ -27,19 +27,24 @@ t_lst   *ft_lstnew_ls(struct dirent *dir, char *path)
         exit (2);
         //exit propre
     }
-    lst->name = str_cpy_ls(dir->d_name, (unsigned int)dir->d_namlen);
-    lst->type = dir->d_type;
-    lst->sec = 0;
-    lst->nsec = 0;
+    if (dir != NULL)
+    {
+        lst->name = str_cpy_ls(dir->d_name, (unsigned int)dir->d_namlen);
+        lst->type = dir->d_type;
     //if (lst->type == DT_DIR)
     //{
-    if ((lst->path = ft_add_path(dir->d_name, path)) == NULL)
-    {
-        exit (2);
+        if ((lst->path = ft_add_path(dir->d_name, path)) == NULL)
+        {
+            exit (2);
         //exit propre
+        }
     }
-  //  }
-  //  else
+    else
+    {
+        lst->name = str_cpy_ls(path, (unsigned int)ft_strlen(path) + 1);
+    }
+    lst->sec = 0;
+    lst->nsec = 0;
    //     lst->path = NULL;
     lst->next = NULL;
     return (lst);

@@ -8,7 +8,8 @@ void    ft_add_time(t_lst **maille, char *path)
     tmp = *maille;
     buff = NULL;
     buff = malloc(sizeof(struct stat));
-    if ((lstat(tmp->path, buff)) != 0)
+    //if ((lstat(tmp->path, buff)) != 0)
+    if ((lstat(path, buff)) != 0)
     {
         ft_putstr("fail de lstat\n");
         exit (0);
@@ -64,7 +65,7 @@ void	add_av_rtime(struct dirent *dp, t_opt *options, t_lst **lst, char *path)
     t_lst *maille;
     t_lst *tmp;
     
-    if (ft_compare(dp->d_name, options) != -1)
+    if (dp == NULL || ft_compare(dp->d_name, options) != -1)
     {
         tmp = *lst;
         maille = ft_lstnew_ls(dp, path);
@@ -110,7 +111,7 @@ void	add_av_time(struct dirent *dp, t_opt *options, t_lst **lst, char *path)
     t_lst *maille;
     t_lst *tmp;
     
-    if (ft_compare(dp->d_name, options) != -1)
+    if (dp == NULL || ft_compare(dp->d_name, options) != -1)
     {
         tmp = *lst;
         maille = ft_lstnew_ls(dp, path);

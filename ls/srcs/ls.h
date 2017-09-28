@@ -58,6 +58,7 @@ typedef struct		s_struct_ls
 //init.c
 char    *str_cpy_ls(char *src, unsigned int len);
 t_lst   *ft_lstnew_ls(struct dirent *dir, char *path);
+void	print_lst_av(t_lst **alst, t_opt *options);
 
 //tri_av.c
 void    ft_make_lst_av(int ac, char **av, t_opt *options);

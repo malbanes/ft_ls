@@ -43,24 +43,25 @@ void	add_av_ralph(struct dirent *dp, t_opt *options, t_lst **lst, char *path)
     t_lst *maille;
     t_lst *tmp;
     
-    if (ft_compare(dp->d_name, options) == -1)
-        return;
-    tmp = *lst;
-    maille = ft_lstnew_ls(dp, path);
-    if (*lst == NULL)
+    if (dp == NULL || ft_compare(dp->d_name, options) != -1 )
     {
-        *lst = maille;
-        return;
-    }
-    else
-    {
-        if (ft_strcmp(maille->name, tmp->name) > 0)
+        tmp = *lst;
+        maille = ft_lstnew_ls(dp, path);
+        if (*lst == NULL)
         {
-            maille->next = *lst;
             *lst = maille;
             return;
         }
-        parcourir_lst_ralph(tmp, maille);
+        else
+        {
+            if (ft_strcmp(maille->name, tmp->name) > 0)
+            {
+                maille->next = *lst;
+                *lst = maille;
+                return;
+            }
+            parcourir_lst_ralph(tmp, maille);
+        }
     }
 }
 
@@ -86,7 +87,7 @@ void	add_av_alph(struct dirent *dp, t_opt *options, t_lst **lst, char *path)
     t_lst *maille;
     t_lst *tmp;
     
-    if (ft_compare(dp->d_name, options) != -1)
+    if (dp == NULL || ft_compare(dp->d_name, options) != -1 )
     {
         tmp = *lst;
         maille = ft_lstnew_ls(dp, path);

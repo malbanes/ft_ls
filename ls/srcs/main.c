@@ -16,7 +16,7 @@ int	main(int ac, char **av)
     else if (ls->opt->arg > 0)
     {
         ls->opt->is_argument = 1;
-        //ft_make_lst_av(ac, av, ls->opt);
+        ft_make_lst_av(ac, av, ls->opt);
     }
     //while (1);
     return (1);
